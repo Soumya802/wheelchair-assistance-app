@@ -1,0 +1,25 @@
+{
+  "name": "wheelchair-app",
+  "version": "1.0.0",
+  "description": "Wheelchair Guidance and Assistance Web Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wheelchair",
+    "accessibility",
+    "express",
+    "mongodb"
+  ],
+  "author": "Soumya",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.4.0",
+    "mongoose": "^9.7.2"
+  }
+}
