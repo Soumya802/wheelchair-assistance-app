@@ -28,10 +28,6 @@ const Contact = mongoose.model("Contact", contactSchema);
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// Temporary storage (we'll replace this with MongoDB after the connection works)
-let requests = [];
-let contacts = [];
-
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
@@ -98,5 +94,5 @@ app.get("/contacts", async (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🚀 Server running at http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
