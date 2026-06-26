@@ -8,7 +8,7 @@ const dns = require("dns");
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const requestSchema = new mongoose.Schema({
     name: String,
