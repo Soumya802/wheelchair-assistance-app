@@ -29,6 +29,9 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 // Connect to MongoDB
+console.log("=== MONGO_URI DEBUG ===");
+console.log(process.env.MONGO_URI);
+console.log("=======================");
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("✅ MongoDB Connected");
