@@ -32,6 +32,7 @@ app.use(express.static(__dirname));
 console.log("=== MONGO_URI DEBUG ===");
 console.log(process.env.MONGO_URI);
 console.log("=======================");
+console.log("MONGO_URI =", JSON.stringify(process.env.MONGO_URI));
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("✅ MongoDB Connected");
