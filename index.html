@@ -8,27 +8,48 @@
     <body>
     <div class="container">
 
-    <h1>Wheelchair Guidance & Assistance</h1>
+<h1>♿ Wheelchair Guidance & Assistance</h1>
 
-    <p>Helping wheelchair users find accessible places and request assistance.</p>
+<p class="subtitle">
+    Navigate accessible spaces and request assistance with ease.
+</p>
 
     <div class="button-container">
 
-    <button onclick="showPlaces()">Accessible Places</button>
+<div class="feature-grid">
 
-    <button onclick="requestAssistance()">Request Assistance</button>
+    <div class="feature-card" onclick="showPlaces()">
+        <h3>📍 Accessible Places</h3>
+        <p>Browse wheelchair-friendly locations.</p>
+    </div>
 
-    <button onclick="showEmergencyContacts()">Emergency Contacts</button>
+    <div class="feature-card" onclick="requestAssistance()">
+        <h3>🤝 Request Assistance</h3>
+        <p>Submit a new assistance request.</p>
+    </div>
 
-    <button onclick="showMyRequests()">My Requests</button>
+    <div class="feature-card" onclick="showEmergencyContacts()">
+        <h3>🚨 Emergency Contacts</h3>
+        <p>View important emergency numbers.</p>
+    </div>
 
-    <button onclick="viewContacts()">View Contacts</button>
+    <div class="feature-card" onclick="showMyRequests()">
+        <h3>📋 My Requests</h3>
+        <p>View all submitted requests.</p>
+    </div>
+
+</div>
 
 </div>
 
     <div id="content"></div>
 
     </div>
+    <footer>
+
+    <p>© 2026 Wheelchair Guidance & Assistance | Developed by Soumya</p>
+
+</footer>
     <script src="script.js"></script>
     </body>
 </html>

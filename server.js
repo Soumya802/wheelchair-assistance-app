@@ -71,6 +71,16 @@ app.get("/requests", async (req, res) => {
 
 });
 
+app.delete("/request/:id", async (req, res) => {
+
+    await Request.findByIdAndDelete(req.params.id);
+
+    res.json({
+        message: "Request deleted successfully"
+    });
+
+});
+
 // Save emergency contact
 app.post("/contact", async (req, res) => {
 
@@ -97,3 +107,15 @@ app.get("/contacts", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });
+
+async function deleteRequest(id){
+
+    await fetch(`/request/${id}`,{
+
+        method:"DELETE"
+
+    });
+
+    showMyRequests();
+
+}

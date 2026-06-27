@@ -1,19 +1,63 @@
-function showPlaces() {
-    let accessiblePlaces = [
-        "Main Gate Ramp",
-        "Library Elevator",
-        "Accessible Washroom"
-    ];
-    let output = "<h2>Accessible Places</h2><ul>";
+function showPlaces(){
 
-    for(let i =0; i<accessiblePlaces.length; i++) {
-        output+= "<li>" + accessiblePlaces[i] + "</li>";
-    }
+    let output = `
 
-    output+= "</ul>";
+        <h2>Accessible Places</h2>
+
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="Search Location..."
+            onkeyup="filterPlaces()"
+        >
+
+        <br><br>
+
+        <div id="placesList"></div>
+
+    `;
 
     document.getElementById("content").innerHTML = output;
+
+    filterPlaces();
+
 }
+
+function filterPlaces(){
+
+    let accessiblePlaces = [
+
+        "Main Gate Ramp",
+
+        "Library Elevator",
+
+        "Accessible Washroom"
+
+    ];
+
+    let search = document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+    let output = "<ul>";
+
+    accessiblePlaces.forEach(place=>{
+
+        if(place.toLowerCase().includes(search)){
+
+            output += `<li>${place}</li>`;
+
+        }
+
+    });
+
+    output += "</ul>";
+
+    document.getElementById("placesList").innerHTML = output;
+
+}
+
 function requestAssistance() {
 
     let form = `
@@ -107,21 +151,44 @@ async function showMyRequests() {
 
     const requests = await response.json();
 
-    let output = "<h2>My Requests</h2><ul>";
+    let output = `
+<h2>My Requests</h2>
 
-    requests.forEach(request => {
+<div class="stats-card">
+    <h3>${requests.length}</h3>
+    <p>Total Requests</p>
+</div>
+`;
 
-        output += `
-            <li>
-                <strong>${request.name}</strong><br>
-                Location: ${request.location}<br>
-                Help: ${request.help}
-            </li><br>
-        `;
+    if(requests.length === 0){
 
-    });
+        output += "<p>No requests found.</p>";
 
-    output += "</ul>";
+    }else{
+
+        requests.forEach(request => {
+
+            output += `
+
+                <div class="request-card">
+
+                    <h3>${request.name}</h3>
+
+                    <p><strong>Location:</strong> ${request.location}</p>
+
+                    <p><strong>Need Help:</strong> ${request.help}</p>
+
+                    <button onclick="deleteRequest('${request._id}')">
+                        🗑 Delete
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+    }
 
     document.getElementById("content").innerHTML = output;
 
@@ -229,5 +296,21 @@ async function viewContacts() {
     output += "</ul>";
 
     document.getElementById("content").innerHTML = output;
+
+}
+
+async function deleteRequest(id){
+
+    let choice = confirm("Are you sure you want to delete this request?");
+
+    if(!choice){
+        return;
+    }
+
+    await fetch(`/request/${id}`,{
+        method:"DELETE"
+    });
+
+    showMyRequests();
 
 }
